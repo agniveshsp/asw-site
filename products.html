@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products &amp; Treatments – Aswamedha</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── DESIGN TOKENS ── */
+    :root {
+      --cream: #f8f4e8;
+      --cream-dark: #f0ead4;
+      --green-deep: #2d4a2d;
+      --green-mid: #3d6b3d;
+      --green-light: #5a8a3a;
+      --green-muted: #7a9e6a;
+      --gold: #c8893a;
+      --gold-light: #d9a055;
+      --text-dark: #1a2e1a;
+      --text-body: #3a4a3a;
+      --text-muted: #6b7c6b;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text-body);
+      background: var(--white);
+    }
+
+    h1, h2, h3, h4, .display-text {
+      font-family: 'Lora', serif;
+    }
+
+    /* ── NAVBAR (reused, unchanged) ── */
+    .aswa-nav {
+      background: var(--cream);
+      padding: 0 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(45,74,45,0.1);
+    }
+    .aswa-nav .navbar-brand .logo-mark {
+      font-size: 1.6rem;
+      color: var(--green-deep);
+    }
+    .aswa-nav .navbar-item {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      letter-spacing: 0.02em;
+      padding: 0.75rem 1rem;
+    }
+    .aswa-nav .navbar-item:hover,
+    .aswa-nav .navbar-item.is-active {
+      color: var(--green-mid);
+      background: transparent;
+    }
+
+    /* ── PAGE HERO BANNER (reused) ── */
+    .hero-section {
+      position: relative;
+      min-height: 240px;
+      background: linear-gradient(
+        135deg,
+        rgba(20, 38, 20, 0.72) 0%,
+        rgba(30, 55, 20, 0.45) 60%,
+        rgba(60, 90, 20, 0.15) 100%
+      ),
+      url('https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=1400&q=80') center/cover no-repeat;
+      display: flex;
+      align-items: flex-end;
+    }
+    .hero-section .hero-body {
+      padding: 3rem 3rem 2.5rem;
+    }
+    .hero-section h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+    }
+
+    /* ── BUTTONS (reused) ── */
+    .btn-gold {
+      background: var(--gold);
+      color: var(--white) !important;
+      border: none;
+      border-radius: 4px;
+      padding: 0.7rem 1.6rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      transition: background 0.2s;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .btn-gold:hover { background: var(--gold-light); }
+
+    .btn-green {
+      background: var(--green-deep);
+      color: var(--white) !important;
+      border: none;
+      border-radius: 4px;
+      padding: 0.7rem 1.8rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      transition: background 0.2s;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .btn-green:hover { background: var(--green-mid); }
+
+    /* ── SECTION HEADER BAR ── */
+    .section-header-bar {
+      background: #7a9e6a;
+      padding: 1.8rem 3rem;
+    }
+    .section-header-bar h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 400;
+      color: var(--white);
+      margin: 0;
+    }
+
+    /* ── TREATMENTS ── */
+    .treatments-section {
+      background: var(--cream);
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .treatments-inner {
+      padding: 3rem 3rem 3.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Decorative herb image — floats bottom-right */
+    .treatments-deco {
+      position: absolute;
+      right: -20px;
+      bottom: -10px;
+      width: 340px;
+      opacity: 0.55;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Treatment list */
+    .treatment-list {
+      max-width: 620px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .treatment-item {
+      padding: 1.4rem 0;
+      border-bottom: 1px solid rgba(45,74,45,0.1);
+      cursor: pointer;
+      transition: background 0.15s;
+      border-radius: 4px;
+      padding-left: 0.5rem;
+    }
+
+    .treatment-item:first-child {
+      border-top: 1px solid rgba(45,74,45,0.1);
+    }
+
+    .treatment-item:hover {
+      background: rgba(45,74,45,0.04);
+      padding-left: 1rem;
+      transition: padding-left 0.2s, background 0.15s;
+    }
+
+    .treatment-item h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .treatment-item h4::before {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green-mid);
+      flex-shrink: 0;
+    }
+
+    .treatment-item p {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: var(--text-muted);
+      margin: 0;
+      padding-left: 1.4rem;
+    }
+
+    /* ── PRODUCTS ── */
+    .products-section {
+      background: var(--cream);
+      padding: 0 0 4rem;
+    }
+
+    .products-inner {
+      padding: 3rem 3rem 0;
+    }
+
+    .product-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .product-image-wrap {
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .product-image-wrap img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    /* Product category list */
+    .product-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .product-item {
+      padding: 1.1rem 1rem 1.1rem 1.2rem;
+      border-bottom: 1px solid rgba(45,74,45,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: background 0.15s, padding-left 0.2s;
+      border-radius: 4px;
+    }
+
+    .product-item:first-child {
+      border-top: 1px solid rgba(45,74,45,0.12);
+    }
+
+    .product-item:hover {
+      background: rgba(45,74,45,0.04);
+      padding-left: 1.6rem;
+    }
+
+    .product-item span {
+      font-family: 'Lora', serif;
+      font-size: 1.05rem;
+      color: var(--text-dark);
+    }
+
+    .product-item .arrow {
+      font-size: 0.85rem;
+      color: var(--green-muted);
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+
+    .product-item:hover .arrow {
+      opacity: 1;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero-section .hero-body {
+        padding: 2.5rem 1.5rem 2rem;
+      }
+
+      .section-header-bar {
+        padding: 1.5rem 1.5rem;
+      }
+
+      .treatments-inner {
+        padding: 2rem 1.5rem 2.5rem;
+      }
+
+      .treatments-deco {
+        width: 200px;
+        right: -10px;
+        bottom: 0;
+        opacity: 0.3;
+      }
+
+      .treatment-list {
+        max-width: 100%;
+      }
+
+      .products-inner {
+        padding: 2rem 1.5rem 0;
+      }
+
+      .product-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR (reused) -->
+  <nav class="aswa-nav navbar" role="navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="aswamedha.html">
+        <span class="logo-mark">✻</span>
+      </a>
+      <a role="button" class="navbar-burger" data-target="navMenu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </a>
+    </div>
+    <div id="navMenu" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="aswamedha.html">Home</a>
+        <a class="navbar-item" href="aswamedha-about.html">About Us</a>
+        <a class="navbar-item is-active" href="#">Products &amp; Treatments</a>
+        <a class="navbar-item" href="#">Gallery</a>
+        <a class="navbar-item" href="#">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO BANNER -->
+  <section class="hero-section">
+    <div class="hero-body">
+      <div class="container">
+        <h1>Products &amp; Treatments</h1>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TREATMENTS ── -->
+  <div class="section-header-bar">
+    <h2>Treatments</h2>
+  </div>
+
+  <section class="treatments-section">
+    <!-- Decorative herb image -->
+    <img
+      class="treatments-deco"
+      src="https://images.unsplash.com/photo-1546015720-b8b30df5aa27?w=600&q=80"
+      alt=""
+      aria-hidden="true"
+    />
+
+    <div class="treatments-inner">
+      <div class="treatment-list">
+
+        <div class="treatment-item">
+          <h4>Metabolic Disorders and Diabetes</h4>
+          <p>Treatments that support balanced metabolism, improve blood sugar regulation and manage diabetes naturally.</p>
+        </div>
+
+        <div class="treatment-item">
+          <h4>Skin and Hair</h4>
+          <p>Holistic treatments that enhance the natural health of your skin and hair, restoring balance and resolving concerns.</p>
+        </div>
+
+        <div class="treatment-item">
+          <h4>Stress Management and Hypertension</h4>
+          <p>Treatments that calm the mind, relax the body, and support healthy blood pressure regulation.</p>
+        </div>
+
+        <div class="treatment-item">
+          <h4>Women's Health and Wellness</h4>
+          <p>Treatments that support hormonal balance, energy, mood stability, and sleep while addressing concerns such as PMS, PCOD, endometriosis and more.</p>
+        </div>
+
+        <div class="treatment-item">
+          <h4>Reproductive Health and Fertility Support</h4>
+          <p>Treatments that strengthen the reproductive system, regulate cycles and support conception by addressing the underlying factors.</p>
+        </div>
+
+        <div class="treatment-item">
+          <h4>Respiratory and Immune Wellness</h4>
+          <p>Treatments that help strengthen lung function, address congestion, and boost immune resilience while addressing concerns like allergies, recurrent infections, and seasonal respiratory issues.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRODUCTS ── -->
+  <div class="section-header-bar">
+    <h2>Our Products</h2>
+  </div>
+
+  <section class="products-section">
+    <div class="products-inner">
+      <div class="product-layout">
+
+        <!-- Product image -->
+        <div class="product-image-wrap">
+          <img
+            src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=800&q=80"
+            alt="Aswamedha skincare and herbal product range"
+          />
+        </div>
+
+        <!-- Product list -->
+        <div class="product-list">
+
+          <div class="product-item">
+            <span>Skincare Gel</span>
+            <span class="arrow">→</span>
+          </div>
+
+          <div class="product-item">
+            <span>Branded Products</span>
+            <span class="arrow">→</span>
+          </div>
+
+          <div class="product-item">
+            <span>Ortho Herb Ointment</span>
+            <span class="arrow">→</span>
+          </div>
+
+          <div class="product-item">
+            <span>Traditional Ayurvedic Medicines</span>
+            <span class="arrow">→</span>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const burger = document.querySelector('.navbar-burger');
+      const menu = document.getElementById('navMenu');
+      if (burger && menu) {
+        burger.addEventListener('click', () => {
+          burger.classList.toggle('is-active');
+          menu.classList.toggle('is-active');
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

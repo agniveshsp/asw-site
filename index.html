@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aswamedha – Ancient Healing, Modern Wellness</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text-body);
+      background: var(--white);
+    }
+
+    h1,
+    h2,
+    h3,
+    .display-text {
+      font-family: 'Lora', serif;
+    }
+
+    /* ── NAVBAR ── */
+
+
+    /* ── HERO ── */
+    .hero-section {
+      position: relative;
+      min-height: 480px;
+      background: url('images/home/home-page.jpg?w=1400') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-section .hero-body {
+      padding: 5rem 3rem;
+    }
+
+    .hero-section h1 {
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-section .hero-sub {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.88);
+      margin-bottom: 2rem;
+      font-weight: 300;
+      letter-spacing: 0.01em;
+    }
+
+    .hero-section .hero-sub strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--white) !important;
+      border: none;
+      border-radius: 4px;
+      padding: 0.7rem 1.6rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      transition: background 0.2s;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .btn-gold:hover {
+      background: var(--gold-light);
+    }
+
+    .btn-green {
+      background: var(--green-deep);
+      color: var(--white) !important;
+      border: none;
+      border-radius: 4px;
+      padding: 0.7rem 1.8rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      transition: background 0.2s;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .btn-green:hover {
+      background: var(--green-mid);
+    }
+
+    /* ── PILLARS STRIP ── */
+    .pillars-strip {
+      background: var(--cream);
+      padding: 3rem 2rem;
+      border-bottom: 1px solid rgba(45, 74, 45, 0.12);
+    }
+
+    .pillar-item {
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+
+    .pillar-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 0.8rem;
+      color: var(--green-deep);
+    }
+
+    .pillar-item h4 {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 0.3rem;
+    }
+
+    .pillar-item p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+      max-width: 140px;
+      margin: 0 auto;
+    }
+
+    .section-divider {
+      border: 0;
+      height: 5px;
+      background-color: rgba(252, 253, 241, 0.979);
+      margin: 0;
+    }
+
+
+
+    /* ── STORY SECTION ── */
+    .story-section {
+      background: var(--white);
+    }
+
+    .story-section .story-image {
+
+      width: 100%;
+      height: 500px;
+      min-height: 300px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .story-content {
+      padding: 4rem 3rem;
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+      justify-content: center;
+      background-color: rgb(247, 246, 222);
+    }
+
+    .story-content h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 600;
+      color: var(--text-dark);
+      line-height: 1.25;
+      margin-bottom: 1.2rem;
+    }
+
+    .story-content p {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--text-body);
+      margin-bottom: 2rem;
+    }
+
+    /* ── VISION & MISSION ── */
+    .vision-mission {
+      background: var(--cream-dark);
+    }
+
+    .vm-block {
+      padding: 3.5rem 2.5rem;
+    }
+
+    .vm-vision {
+      padding-left: 10rem;
+    }
+
+    .vm-mission {
+      background-color: #FBF3E7;
+      padding-right: 10rem;
+
+    }
+
+    .vm-block h2 {
+      font-family: 'Lora', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+
+    .vm-block p,
+    .vm-block li {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--text-body);
+    }
+
+    .vm-block ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .vm-block ul li {
+      padding-left: 1.2rem;
+      position: relative;
+      margin-bottom: 0.6rem;
+    }
+
+    .vm-block ul li::before {
+      content: "·";
+      position: absolute;
+      left: 0;
+      color: var(--green-mid);
+      font-size: 1.2rem;
+      line-height: 1.5;
+    }
+
+    .vision-leaf {
+      margin-top: 2rem;
+      opacity: 0.7;
+    }
+
+    .vm-divider {
+      width: 1px;
+      background: rgba(45, 74, 45, 0.15);
+      align-self: stretch;
+    }
+
+    /* ── GALLERY ── */
+    .gallery-section {
+      background: rgb(124, 138, 102);
+    }
+
+    .gallery-header {
+      padding: 1.2rem 2rem;
+      text-align: right;
+    }
+
+    .gallery-header a {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      letter-spacing: 0.03em;
+      text-decoration: none;
+    }
+
+    .gallery-header a:hover {
+      color: var(--gold-light);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+
+      gap: 0;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: 330px;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.88);
+      transition: filter 0.25s;
+    }
+
+    .gallery-grid img:hover {
+      filter: brightness(1);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero-section .hero-body {
+        padding: 3rem 1.5rem;
+      }
+
+      .story-content {
+        padding: 2.5rem 1.5rem;
+      }
+
+      .vm-block {
+        padding: 2.5rem 1.5rem;
+        border-bottom: 1px solid rgba(45, 74, 45, 0.15);
+      }
+
+      .vm-divider {
+        display: none;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .gallery-grid img {
+        height: 160px;
+      }
+
+      .pillars-strip .columns {
+        flex-wrap: wrap;
+      }
+
+      .pillar-item {
+        flex: 0 0 50%;
+        margin-bottom: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="aswa-nav navbar" role="navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="#">
+        <img class="aswa-header-img" src=" images/aswamedha-logo-header.png" alt="">
+      </a>
+      <a role="button" class="navbar-burger" data-target="navMenu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </a>
+    </div>
+    <div id="navMenu" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <a class="navbar-item" href="/about.html">About Us</a>
+        <a class="navbar-item" href="/products.html">Products &amp; Treatments</a>
+        <a class="navbar-item" href="/gallery.html">Gallery</a>
+        <a class="navbar-item" href="/contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero-section">
+    <div class="hero-body">
+      <div class="container">
+        <h1>Ancient Healing,<br />Modern Wellness</h1>
+        <p class="hero-sub">Experience Ayurveda at <strong>Aswamedha</strong></p>
+        <a href="/products.html" class="btn-gold">Products &amp; Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PILLARS STRIP -->
+  <section class="pillars-strip">
+    <div class="container">
+      <div class="columns is-vcentered is-mobile is-multiline">
+
+        <div class="column pillar-item">
+          <div class="pillar-icon">
+            <img src="images/vectors/pillar1.svg" alt="">
+          </div>
+          <h4>Authentic Ayurveda</h4>
+          <p>Classical Ayurvedic formulations.</p>
+        </div>
+
+        <div class="column pillar-item">
+          <div class="pillar-icon">
+            <img src="images/vectors/pillar2.svg" alt="">
+          </div>
+          <h4>Pure &amp; Natural</h4>
+          <p>Organic &amp; Sustainably Sourced</p>
+        </div>
+
+        <div class="column pillar-item">
+          <div class="pillar-icon">
+            <img src="images/vectors/pillar3.svg" alt="">
+          </div>
+          <h4>Quality Assured</h4>
+          <p>Strict quality checking at every step</p>
+        </div>
+
+        <div class="column pillar-item">
+          <div class="pillar-icon">
+            <img src="images/vectors/pillar4.svg" alt="">
+          </div>
+          <h4>Modern Standards</h4>
+          <p>Manufactured by modern technology</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY SECTION -->
+  <section class="story-section">
+    <div class="columns is-gapless">
+      <div class="column is-half">
+        <img class="story-image" src="images/home/treatement-cover-comp.jpg?"
+          alt="Traditional Ayurvedic treatment room" />
+      </div>
+      <div class="column is-half">
+        <div class="story-content">
+          <h2>Authentic Ayurveda<br />from God's Own Country</h2>
+          <p>
+            Aswamedha Healthcare is built on the principles of purity, integrity, and responsibility, we are committed
+            to delivering high-quality Ayurvedic and herbal products that promote natural wellness.
+          </p>
+          <div>
+            <a href="/about.html" class="btn-green">Our Story</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr class="section-divider">
+  <!-- VISION & MISSION -->
+  <section class="vision-mission">
+    <div class="columns is-gapless">
+
+      <div class="column">
+        <div class="vm-block vm-vision">
+          <h2>Our Vision</h2>
+          <p>
+            To become a trusted global leader in Ayurvedic and herbal healthcare by delivering safe, effective, and
+            scientifically validated natural products that promote holistic wellness while preserving the rich heritage
+            of Ayurveda.
+          </p>
+          <div class="vision-leaf">
+            <svg width="80" height="60" viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 50 C10 30 25 10 55 8 C55 8 60 35 40 48 C30 54 15 55 10 50Z" fill="#5a8a3a" opacity="0.6" />
+              <path d="M30 55 C30 35 45 15 75 13 C75 13 80 40 60 53 C50 59 35 60 30 55Z" fill="#3d6b3d" opacity="0.5" />
+              <path d="M10 50 C20 45 35 40 55 8" stroke="#2d4a2d" stroke-width="1" stroke-linecap="round"
+                opacity="0.5" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="vm-divider"></div>
+
+      <div class="column">
+        <div class="vm-block vm-mission">
+          <h2>Our Mission</h2>
+          <ul>
+            <li>Manufacture premium Ayurvedic and herbal products using authentic ingredients, traditional formulations,
+              and modern technology.</li>
+            <li>Maintain the highest standards of quality, safety, and regulatory compliance.</li>
+            <li>Promote preventive healthcare and healthy lifestyles through natural, sustainable solutions.</li>
+            <li>Advance Ayurvedic innovation through research, development, and evidence-based herbal formulations.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <hr class="section-divider">
+  <!-- GALLERY -->
+  <section class="gallery-section">
+    <div class="gallery-header">
+      <a href="/gallery.html">View Gallery &gt;&gt;</a>
+    </div>
+    <div class="gallery-grid">
+      <img src="images/gallery/gallery-min01.jpg" alt="Gallery 1" />
+      <img src="images/gallery/gallery-min02.jpg" alt="Gallery 2" />
+      <img src="images/gallery/gallery-min06.jpg" alt="Gallery 3" />
+      <img src="images/gallery/gallery-min08.jpg" alt="Gallery 4" />
+
+    </div>
+  </section>
+  <hr class="section-divider">
+  <script>
+    // Bulma burger toggle
+    document.addEventListener('DOMContentLoaded', () => {
+      const burger = document.querySelector('.navbar-burger');
+      const menu = document.getElementById('navMenu');
+      if (burger && menu) {
+        burger.addEventListener('click', () => {
+          burger.classList.toggle('is-active');
+          menu.classList.toggle('is-active');
+        });
+      }
+    });
+  </script>
+
+
+
+  <footer class="aswa-footer">
+
+    <!-- Top band -->
+    <div class="aswa-footer-top px-2">
+      <div class="container">
+        <div class="columns is-variable is-8">
+
+          <!-- Col 1: Brand -->
+          <div class="column is-4">
+            <div class="footer-brand">
+
+              <span class="footer-brand-name">Aswamedha</span>
+            </div>
+            <p class="footer-tagline">Ancient Healing, Modern Wellness</p>
+            <p class="footer-about-blurb">
+              A dedicated Ayurvedic hospital and herbal manufacturing company rooted in the authentic traditions of
+              Kerala, God's Own Country.
+            </p>
+            <!-- Social icons -->
+            <div class="footer-socials">
+              <a href="#" aria-label="Facebook" class="footer-social-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                </svg>
+              </a>
+              <a href="#" aria-label="Instagram" class="footer-social-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+              </a>
+              <a href="#" aria-label="WhatsApp" class="footer-social-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                  <path
+                    d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.057 23.428a.75.75 0 00.916.916l5.57-1.476A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.694-.504-5.23-1.385l-.376-.22-3.894 1.031 1.032-3.893-.22-.375A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+                </svg>
+              </a>
+              <a href="#" aria-label="YouTube" class="footer-social-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Col 2: Quick links -->
+          <!-- <div class="column is-2">
+            <h4 class="footer-col-heading">Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="aswamedha.html">Home</a></li>
+              <li><a href="aswamedha-about.html">About Us</a></li>
+              <li><a href="aswamedha-products.html">Products &amp; Treatments</a></li>
+              <li><a href="aswamedha-gallery.html">Gallery</a></li>
+              <li><a href="aswamedha-contact.html">Contact</a></li>
+            </ul>
+          </div> -->
+
+          <!-- Col 3: Treatments
+        <div class="column is-3">
+          <h4 class="footer-col-heading">Treatments</h4>
+          <ul class="footer-links">
+            <li><a href="aswamedha-products.html">Metabolic Disorders &amp; Diabetes</a></li>
+            <li><a href="aswamedha-products.html">Skin and Hair</a></li>
+            <li><a href="aswamedha-products.html">Stress Management</a></li>
+            <li><a href="aswamedha-products.html">Women's Health &amp; Wellness</a></li>
+            <li><a href="aswamedha-products.html">Reproductive Health</a></li>
+            <li><a href="aswamedha-products.html">Respiratory &amp; Immune Wellness</a></li>
+          </ul>
+        </div> -->
+
+          <!-- Col 4: Contact -->
+          <div class="column is-3">
+            <h4 class="footer-col-heading">Get In Touch</h4>
+            <ul class="footer-contact-list">
+              <li>
+                <svg class="fci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <span>TC 21/558, Gangothri,<br>Karamana, Trivandrum – 695002</span>
+              </li>
+              <li>
+                <svg class="fci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.14 2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.1a16 16 0 006 6l.63-.63a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 15.92z" />
+                </svg>
+                <a href="tel:+919995759566">+91 9995759566</a>
+              </li>
+              <li>
+                <svg class="fci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                <a href="mailto:drashwinsan@gmail.com">drashwinsan@gmail.com</a>
+              </li>
+              <li>
+                <svg class="fci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="2" y1="12" x2="22" y2="12" />
+                  <path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" />
+                </svg>
+                <a href="https://www.aswamedhamhealthcare.com" target="_blank"
+                  rel="noopener">aswamedhamhealthcare.com</a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="aswa-footer-bottom">
+      <div class="container">
+        <div class="footer-bottom-inner">
+          <span class="footer-copy">&copy; <span id="footerYear"></span> Aswamedha Healthcare. All rights
+            reserved.</span>
+          <span class="footer-bottom-links">
+            <a href="#">Privacy Policy</a>
+            <span class="footer-sep">·</span>
+            <a href="#">Terms of Use</a>
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+
+  <style>
+
+  </style>
+
+  <script>
+    /* Auto-update copyright year */
+    (function () {
+      const el = document.getElementById('footerYear');
+      if (el) el.textContent = new Date().getFullYear();
+    })();
+  </script>
+
+</body>
+
+</html>

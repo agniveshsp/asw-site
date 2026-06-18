@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery – Aswamedha</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── DESIGN TOKENS ── */
+    :root {
+      --cream: #f8f4e8;
+      --cream-dark: #f0ead4;
+      --green-deep: #2d4a2d;
+      --green-mid: #3d6b3d;
+      --green-light: #5a8a3a;
+      --gold: #c8893a;
+      --gold-light: #d9a055;
+      --text-dark: #1a2e1a;
+      --text-body: #3a4a3a;
+      --text-muted: #6b7c6b;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text-body);
+      background: var(--cream);
+    }
+
+    h1, h2, h3 { font-family: 'Lora', serif; }
+
+    /* ── NAVBAR (reused, unchanged) ── */
+    .aswa-nav {
+      background: var(--cream);
+      padding: 0 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(45,74,45,0.1);
+    }
+    .aswa-nav .navbar-brand .logo-mark {
+      font-size: 1.6rem;
+      color: var(--green-deep);
+    }
+    .aswa-nav .navbar-item {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      letter-spacing: 0.02em;
+      padding: 0.75rem 1rem;
+    }
+    .aswa-nav .navbar-item:hover,
+    .aswa-nav .navbar-item.is-active {
+      color: var(--green-mid);
+      background: transparent;
+    }
+
+    /* ── PAGE HERO BANNER (reused) ── */
+    .hero-section {
+      position: relative;
+      min-height: 240px;
+      background: linear-gradient(
+        135deg,
+        rgba(20, 38, 20, 0.72) 0%,
+        rgba(30, 55, 20, 0.45) 60%,
+        rgba(60, 90, 20, 0.15) 100%
+      ),
+      url('https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=1400&q=80') center/cover no-repeat;
+      display: flex;
+      align-items: flex-end;
+    }
+    .hero-section .hero-body {
+      padding: 3rem 3rem 2.5rem;
+    }
+    .hero-section h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+    }
+
+    /* ── GALLERY SECTION ── */
+    .gallery-section {
+      padding: 3.5rem 0 5rem;
+      background: var(--cream);
+    }
+
+    /* Masonry-style grid using CSS columns */
+    .gallery-grid {
+      padding: 0 2.5rem;
+      columns: 4;
+      column-gap: 14px;
+    }
+
+    .gallery-item {
+      break-inside: avoid;
+      position: relative;
+      margin-bottom: 14px;
+      border-radius: 5px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid rgba(200,137,58,0.25);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    /* Overlay on hover */
+    .gallery-item .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(20,38,20,0.65) 0%,
+        rgba(20,38,20,0) 55%
+      );
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+    }
+
+    .gallery-item .overlay-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      border: 1.5px solid rgba(255,255,255,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: auto;
+      margin-bottom: auto;
+      margin-top: 0.6rem;
+      position: absolute;
+      top: 0.7rem;
+      right: 0.7rem;
+      color: white;
+      font-size: 1rem;
+      transition: background 0.2s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-item:hover .overlay {
+      opacity: 1;
+    }
+
+    .gallery-item:hover .overlay-icon {
+      background: rgba(200,137,58,0.6);
+    }
+
+    /* Gold border flash on hover */
+    .gallery-item::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 5px;
+      box-shadow: inset 0 0 0 0px var(--gold);
+      transition: box-shadow 0.25s ease;
+      pointer-events: none;
+    }
+    .gallery-item:hover::after {
+      box-shadow: inset 0 0 0 2px var(--gold);
+    }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(10, 20, 10, 0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      backdrop-filter: blur(4px);
+    }
+
+    .lightbox.is-open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .lightbox-inner {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .lightbox-img-wrap {
+      position: relative;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+    }
+
+    .lightbox-img-wrap img {
+      max-width: 80vw;
+      max-height: 82vh;
+      display: block;
+      object-fit: contain;
+      border-radius: 6px;
+      transition: opacity 0.2s;
+    }
+
+    .lightbox-img-wrap img.is-loading {
+      opacity: 0.3;
+    }
+
+    /* Counter pill */
+    .lightbox-counter {
+      position: absolute;
+      bottom: -2.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    /* Nav arrows */
+    .lb-arrow {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.08);
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s;
+      flex-shrink: 0;
+      user-select: none;
+    }
+
+    .lb-arrow:hover {
+      background: rgba(200,137,58,0.4);
+      border-color: var(--gold-light);
+    }
+
+    /* Close button */
+    .lb-close {
+      position: absolute;
+      top: -3rem;
+      right: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      background: transparent;
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .lb-close:hover {
+      background: rgba(255,255,255,0.12);
+    }
+
+    /* Thumbnail strip */
+    .lb-thumbs {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      padding: 6px 10px;
+      background: rgba(10,20,10,0.6);
+      border-radius: 40px;
+      border: 1px solid rgba(255,255,255,0.1);
+      max-width: 90vw;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .lb-thumbs::-webkit-scrollbar { display: none; }
+
+    .lb-thumb {
+      width: 36px;
+      height: 36px;
+      border-radius: 4px;
+      object-fit: cover;
+      opacity: 0.5;
+      cursor: pointer;
+      transition: opacity 0.2s, box-shadow 0.2s;
+      flex-shrink: 0;
+    }
+    .lb-thumb.is-active {
+      opacity: 1;
+      box-shadow: 0 0 0 2px var(--gold);
+    }
+    .lb-thumb:hover { opacity: 0.85; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .gallery-grid { columns: 3; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-section .hero-body { padding: 2.5rem 1.5rem 2rem; }
+      .gallery-grid { columns: 2; padding: 0 1.2rem; }
+
+      .lightbox-inner { gap: 0.75rem; }
+      .lb-arrow { width: 36px; height: 36px; font-size: 0.9rem; }
+      .lightbox-img-wrap img { max-width: 78vw; }
+    }
+
+    @media (max-width: 480px) {
+      .gallery-grid { columns: 2; padding: 0 0.8rem; column-gap: 8px; }
+      .gallery-item { margin-bottom: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR (reused) -->
+  <nav class="aswa-nav navbar" role="navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="aswamedha.html">
+        <span class="logo-mark">✻</span>
+      </a>
+      <a role="button" class="navbar-burger" data-target="navMenu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </a>
+    </div>
+    <div id="navMenu" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="aswamedha.html">Home</a>
+        <a class="navbar-item" href="aswamedha-about.html">About Us</a>
+        <a class="navbar-item" href="aswamedha-products.html">Products &amp; Treatments</a>
+        <a class="navbar-item is-active" href="#">Gallery</a>
+        <a class="navbar-item" href="#">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="hero-section">
+    <div class="hero-body">
+      <div class="container">
+        <h1>Gallery</h1>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY GRID -->
+  <section class="gallery-section">
+    <div class="gallery-grid" id="galleryGrid">
+
+      <div class="gallery-item" data-index="0">
+        <img src="https://images.unsplash.com/photo-1588776814546-daab30f310ce?w=600&q=80" alt="Guests at Aswamedha" loading="lazy" />
+        <div class="overlay"><span class="overlay-icon">&#x2B26;</span></div>
+      </div>
+
+      <div class="gallery-item" data-index="1">
+        <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=600&q=80" alt="Ayurvedic treatment" loading="lazy" />
+        <div class="overlay"><span class="overlay-icon">&#x2B26;</span></div>
+      </div>
+
+      <div class="gallery-item" data-index="2">
+        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80" alt="Herbal preparation" loading="lazy" />
+        <div class="overlay"><span class="overlay-icon">&#x2B26;</span></div>
+      </div>
+
+      <div class="gallery-item" data-index="3">
+        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=80" alt="Wellness centre" loading="lazy" />
+        <div class="overlay"><span class="overlay-icon">&#x2B26;</span></div>
+      </div>
+
+      <div class="gallery-item" data-index="4">
+        <img src="https://images.unsplash.com/photo-1599421498111-f6fef62f9894?w=600&q=80" alt="Practitioners" loading="lazy" />
+        <div class="overlay"><span class="overlay-icon">&#x2B26;</span></div>
+      </div>
+
+      <div class="gallery-item" data-index="5">
+        <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=600&q=80" alt="Ayurvedic session" loading="lazy" />
+        <div class="overlay"><span class="overlay-icon">&#x2B26;</span></div>
+      </div>
+
+      <div class="gallery-item" data-index="6">
+        <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=600&q=80" alt="Treatment room" loading="lazy" />
+        <div class="overlay"><span class="overlay-icon">&#x2B26;</span></div>
+      </div>
+
+      <div class="gallery-item" data-index="7">
+        <img src="https://images.unsplash.com/photo-1596854372405-7faf7dd41a05?w=600&q=80" alt="Kerala interior" loading="lazy" />
+        <div class="overlay"><span class="overlay-icon">&#x2B26;</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <div class="lightbox-inner">
+      <button class="lb-arrow" id="lbPrev" aria-label="Previous">&#8592;</button>
+
+      <div class="lightbox-img-wrap">
+        <button class="lb-close" id="lbClose" aria-label="Close">&#x2715;</button>
+        <img id="lbImg" src="" alt="Gallery image" />
+        <div class="lightbox-counter" id="lbCounter">1 / 8</div>
+      </div>
+
+      <button class="lb-arrow" id="lbNext" aria-label="Next">&#8594;</button>
+    </div>
+
+    <!-- Thumbnail strip -->
+    <div class="lb-thumbs" id="lbThumbs"></div>
+  </div>
+
+  <script>
+    // ── Burger ──
+    document.addEventListener('DOMContentLoaded', () => {
+      const burger = document.querySelector('.navbar-burger');
+      const menu = document.getElementById('navMenu');
+      if (burger && menu) {
+        burger.addEventListener('click', () => {
+          burger.classList.toggle('is-active');
+          menu.classList.toggle('is-active');
+        });
+      }
+    });
+
+    // ── Lightbox ──
+    const items   = document.querySelectorAll('.gallery-item');
+    const lb      = document.getElementById('lightbox');
+    const lbImg   = document.getElementById('lbImg');
+    const lbPrev  = document.getElementById('lbPrev');
+    const lbNext  = document.getElementById('lbNext');
+    const lbClose = document.getElementById('lbClose');
+    const lbCount = document.getElementById('lbCounter');
+    const lbThumbs = document.getElementById('lbThumbs');
+
+    // Collect all image srcs
+    const images = Array.from(items).map(el => ({
+      src: el.querySelector('img').src.replace('w=600', 'w=1200'),
+      thumb: el.querySelector('img').src,
+      alt: el.querySelector('img').alt,
+    }));
+
+    let current = 0;
+
+    // Build thumb strip
+    images.forEach((img, i) => {
+      const t = document.createElement('img');
+      t.src = img.thumb;
+      t.alt = img.alt;
+      t.className = 'lb-thumb';
+      t.addEventListener('click', () => goTo(i));
+      lbThumbs.appendChild(t);
+    });
+
+    function goTo(index) {
+      current = (index + images.length) % images.length;
+      lbImg.classList.add('is-loading');
+      const newImg = new Image();
+      newImg.onload = () => {
+        lbImg.src = newImg.src;
+        lbImg.alt = images[current].alt;
+        lbImg.classList.remove('is-loading');
+      };
+      newImg.src = images[current].src;
+      lbCount.textContent = `${current + 1} / ${images.length}`;
+
+      // Sync thumbs
+      document.querySelectorAll('.lb-thumb').forEach((t, i) => {
+        t.classList.toggle('is-active', i === current);
+      });
+
+      // Scroll active thumb into view
+      const activThumb = lbThumbs.children[current];
+      if (activThumb) activThumb.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+
+    function openLightbox(index) {
+      lb.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      goTo(index);
+    }
+
+    function closeLightbox() {
+      lb.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    items.forEach((item, i) => {
+      item.addEventListener('click', () => openLightbox(i));
+    });
+
+    lbClose.addEventListener('click', closeLightbox);
+    lbPrev.addEventListener('click', () => goTo(current - 1));
+    lbNext.addEventListener('click', () => goTo(current + 1));
+
+    lb.addEventListener('click', e => {
+      if (e.target === lb) closeLightbox();
+    });
+
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('is-open')) return;
+      if (e.key === 'ArrowLeft')  goTo(current - 1);
+      if (e.key === 'ArrowRight') goTo(current + 1);
+      if (e.key === 'Escape')     closeLightbox();
+    });
+
+    // Touch swipe support
+    let touchStartX = 0;
+    lb.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) dx < 0 ? goTo(current + 1) : goTo(current - 1);
+    });
+  </script>
+
+</body>
+</html>
