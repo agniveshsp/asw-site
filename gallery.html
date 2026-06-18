@@ -1,29 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gallery – Aswamedha</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css">
   <style>
     /* ── DESIGN TOKENS ── */
-    :root {
-      --cream: #f8f4e8;
-      --cream-dark: #f0ead4;
-      --green-deep: #2d4a2d;
-      --green-mid: #3d6b3d;
-      --green-light: #5a8a3a;
-      --gold: #c8893a;
-      --gold-light: #d9a055;
-      --text-dark: #1a2e1a;
-      --text-body: #3a4a3a;
-      --text-muted: #6b7c6b;
-      --white: #ffffff;
-    }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       font-family: 'Inter', sans-serif;
@@ -31,7 +26,11 @@
       background: var(--cream);
     }
 
-    h1, h2, h3 { font-family: 'Lora', serif; }
+    h1,
+    h2,
+    h3 {
+      font-family: 'Lora', serif;
+    }
 
     /* ── NAVBAR (reused, unchanged) ── */
     .aswa-nav {
@@ -40,12 +39,14 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      border-bottom: 1px solid rgba(45,74,45,0.1);
+      border-bottom: 1px solid rgba(45, 74, 45, 0.1);
     }
+
     .aswa-nav .navbar-brand .logo-mark {
       font-size: 1.6rem;
       color: var(--green-deep);
     }
+
     .aswa-nav .navbar-item {
       font-family: 'Inter', sans-serif;
       font-size: 0.875rem;
@@ -54,6 +55,7 @@
       letter-spacing: 0.02em;
       padding: 0.75rem 1rem;
     }
+
     .aswa-nav .navbar-item:hover,
     .aswa-nav .navbar-item.is-active {
       color: var(--green-mid);
@@ -64,19 +66,19 @@
     .hero-section {
       position: relative;
       min-height: 240px;
-      background: linear-gradient(
-        135deg,
-        rgba(20, 38, 20, 0.72) 0%,
-        rgba(30, 55, 20, 0.45) 60%,
-        rgba(60, 90, 20, 0.15) 100%
-      ),
-      url('https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=1400&q=80') center/cover no-repeat;
+      background: linear-gradient(135deg,
+          rgba(20, 38, 20, 0.72) 0%,
+          rgba(30, 55, 20, 0.45) 60%,
+          rgba(60, 90, 20, 0.15) 100%),
+        url('images/home/treatement-cover-comp.jpg') center/cover no-repeat;
       display: flex;
       align-items: flex-end;
     }
+
     .hero-section .hero-body {
       padding: 3rem 3rem 2.5rem;
     }
+
     .hero-section h1 {
       font-size: clamp(2rem, 4vw, 3rem);
       font-weight: 700;
@@ -104,7 +106,7 @@
       border-radius: 5px;
       overflow: hidden;
       cursor: pointer;
-      border: 2px solid rgba(200,137,58,0.25);
+      border: 2px solid rgba(200, 137, 58, 0.25);
     }
 
     .gallery-item img {
@@ -118,11 +120,9 @@
     .gallery-item .overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(20,38,20,0.65) 0%,
-        rgba(20,38,20,0) 55%
-      );
+      background: linear-gradient(to top,
+          rgba(20, 38, 20, 0.65) 0%,
+          rgba(20, 38, 20, 0) 55%);
       opacity: 0;
       transition: opacity 0.3s ease;
       display: flex;
@@ -134,8 +134,8 @@
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.18);
-      border: 1.5px solid rgba(255,255,255,0.5);
+      background: rgba(255, 255, 255, 0.18);
+      border: 1.5px solid rgba(255, 255, 255, 0.5);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -159,7 +159,7 @@
     }
 
     .gallery-item:hover .overlay-icon {
-      background: rgba(200,137,58,0.6);
+      background: rgba(200, 137, 58, 0.6);
     }
 
     /* Gold border flash on hover */
@@ -172,6 +172,7 @@
       transition: box-shadow 0.25s ease;
       pointer-events: none;
     }
+
     .gallery-item:hover::after {
       box-shadow: inset 0 0 0 2px var(--gold);
     }
@@ -209,7 +210,7 @@
       position: relative;
       border-radius: 6px;
       overflow: hidden;
-      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
     }
 
     .lightbox-img-wrap img {
@@ -232,7 +233,7 @@
       left: 50%;
       transform: translateX(-50%);
       font-size: 0.78rem;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255, 255, 255, 0.5);
       letter-spacing: 0.08em;
       white-space: nowrap;
     }
@@ -242,8 +243,8 @@
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      border: 1.5px solid rgba(255,255,255,0.25);
-      background: rgba(255,255,255,0.08);
+      border: 1.5px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.08);
       color: white;
       font-size: 1.1rem;
       cursor: pointer;
@@ -256,7 +257,7 @@
     }
 
     .lb-arrow:hover {
-      background: rgba(200,137,58,0.4);
+      background: rgba(200, 137, 58, 0.4);
       border-color: var(--gold-light);
     }
 
@@ -268,7 +269,7 @@
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      border: 1.5px solid rgba(255,255,255,0.3);
+      border: 1.5px solid rgba(255, 255, 255, 0.3);
       background: transparent;
       color: white;
       font-size: 1.1rem;
@@ -278,8 +279,9 @@
       justify-content: center;
       transition: background 0.2s;
     }
+
     .lb-close:hover {
-      background: rgba(255,255,255,0.12);
+      background: rgba(255, 255, 255, 0.12);
     }
 
     /* Thumbnail strip */
@@ -291,14 +293,17 @@
       display: flex;
       gap: 6px;
       padding: 6px 10px;
-      background: rgba(10,20,10,0.6);
+      background: rgba(10, 20, 10, 0.6);
       border-radius: 40px;
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       max-width: 90vw;
       overflow-x: auto;
       scrollbar-width: none;
     }
-    .lb-thumbs::-webkit-scrollbar { display: none; }
+
+    .lb-thumbs::-webkit-scrollbar {
+      display: none;
+    }
 
     .lb-thumb {
       width: 36px;
@@ -310,39 +315,69 @@
       transition: opacity 0.2s, box-shadow 0.2s;
       flex-shrink: 0;
     }
+
     .lb-thumb.is-active {
       opacity: 1;
       box-shadow: 0 0 0 2px var(--gold);
     }
-    .lb-thumb:hover { opacity: 0.85; }
+
+    .lb-thumb:hover {
+      opacity: 0.85;
+    }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
-      .gallery-grid { columns: 3; }
+      .gallery-grid {
+        columns: 3;
+      }
     }
 
     @media (max-width: 768px) {
-      .hero-section .hero-body { padding: 2.5rem 1.5rem 2rem; }
-      .gallery-grid { columns: 2; padding: 0 1.2rem; }
+      .hero-section .hero-body {
+        padding: 2.5rem 1.5rem 2rem;
+      }
 
-      .lightbox-inner { gap: 0.75rem; }
-      .lb-arrow { width: 36px; height: 36px; font-size: 0.9rem; }
-      .lightbox-img-wrap img { max-width: 78vw; }
+      .gallery-grid {
+        columns: 2;
+        padding: 0 1.2rem;
+      }
+
+      .lightbox-inner {
+        gap: 0.75rem;
+      }
+
+      .lb-arrow {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+      }
+
+      .lightbox-img-wrap img {
+        max-width: 78vw;
+      }
     }
 
     @media (max-width: 480px) {
-      .gallery-grid { columns: 2; padding: 0 0.8rem; column-gap: 8px; }
-      .gallery-item { margin-bottom: 8px; }
+      .gallery-grid {
+        columns: 2;
+        padding: 0 0.8rem;
+        column-gap: 8px;
+      }
+
+      .gallery-item {
+        margin-bottom: 8px;
+      }
     }
   </style>
 </head>
+
 <body>
 
-  <!-- NAVBAR (reused) -->
+ <!-- NAVBAR -->
   <nav class="aswa-nav navbar" role="navigation">
     <div class="navbar-brand">
-      <a class="navbar-item" href="aswamedha.html">
-        <span class="logo-mark">✻</span>
+      <a class="navbar-item" href="/">
+        <img class="aswa-header-img" src=" images/aswamedha-logo-header.png" alt="">
       </a>
       <a role="button" class="navbar-burger" data-target="navMenu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -350,11 +385,11 @@
     </div>
     <div id="navMenu" class="navbar-menu">
       <div class="navbar-end">
-        <a class="navbar-item" href="aswamedha.html">Home</a>
-        <a class="navbar-item" href="aswamedha-about.html">About Us</a>
-        <a class="navbar-item" href="aswamedha-products.html">Products &amp; Treatments</a>
-        <a class="navbar-item is-active" href="#">Gallery</a>
-        <a class="navbar-item" href="#">Contact</a>
+        <a class="navbar-item" href="/">Home</a>
+        <a class="navbar-item" href="/about.html">About Us</a>
+        <a class="navbar-item" href="/products.html">Products &amp; Treatments</a>
+        <a class="navbar-item" id="active-nav" href="/gallery.html">Gallery</a>
+        <a class="navbar-item" href="/contact.html">Contact</a>
       </div>
     </div>
   </nav>
@@ -373,42 +408,42 @@
     <div class="gallery-grid" id="galleryGrid">
 
       <div class="gallery-item" data-index="0">
-        <img src="https://images.unsplash.com/photo-1588776814546-daab30f310ce?w=600&q=80" alt="Guests at Aswamedha" loading="lazy" />
+        <img src="images/gallery/gallery01.jpg" alt="Guests at Aswamedha" loading="lazy" />
         <div class="overlay"><span class="overlay-icon">&#x2B26;</span></div>
       </div>
 
       <div class="gallery-item" data-index="1">
-        <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=600&q=80" alt="Ayurvedic treatment" loading="lazy" />
+        <img src="images/gallery/gallery02.jpg" alt="Ayurvedic treatment" loading="lazy" />
         <div class="overlay"><span class="overlay-icon">&#x2B26;</span></div>
       </div>
 
       <div class="gallery-item" data-index="2">
-        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80" alt="Herbal preparation" loading="lazy" />
+        <img src="images/gallery/gallery03.jpg" alt="Herbal preparation" loading="lazy" />
         <div class="overlay"><span class="overlay-icon">&#x2B26;</span></div>
       </div>
 
       <div class="gallery-item" data-index="3">
-        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=80" alt="Wellness centre" loading="lazy" />
+        <img src="images/gallery/gallery04.jpg" alt="Wellness centre" loading="lazy" />
         <div class="overlay"><span class="overlay-icon">&#x2B26;</span></div>
       </div>
 
       <div class="gallery-item" data-index="4">
-        <img src="https://images.unsplash.com/photo-1599421498111-f6fef62f9894?w=600&q=80" alt="Practitioners" loading="lazy" />
+        <img src="images/gallery/gallery05.jpg" alt="Practitioners" loading="lazy" />
         <div class="overlay"><span class="overlay-icon">&#x2B26;</span></div>
       </div>
 
       <div class="gallery-item" data-index="5">
-        <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=600&q=80" alt="Ayurvedic session" loading="lazy" />
+        <img src="images/gallery/gallery06.jpg" alt="Ayurvedic session" loading="lazy" />
         <div class="overlay"><span class="overlay-icon">&#x2B26;</span></div>
       </div>
 
       <div class="gallery-item" data-index="6">
-        <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=600&q=80" alt="Treatment room" loading="lazy" />
+        <img src="images/gallery/gallery07.jpg" alt="Treatment room" loading="lazy" />
         <div class="overlay"><span class="overlay-icon">&#x2B26;</span></div>
       </div>
 
       <div class="gallery-item" data-index="7">
-        <img src="https://images.unsplash.com/photo-1596854372405-7faf7dd41a05?w=600&q=80" alt="Kerala interior" loading="lazy" />
+        <img src="images/gallery/gallery08.jpg" alt="Kerala interior" loading="lazy" />
         <div class="overlay"><span class="overlay-icon">&#x2B26;</span></div>
       </div>
 
@@ -447,11 +482,11 @@
     });
 
     // ── Lightbox ──
-    const items   = document.querySelectorAll('.gallery-item');
-    const lb      = document.getElementById('lightbox');
-    const lbImg   = document.getElementById('lbImg');
-    const lbPrev  = document.getElementById('lbPrev');
-    const lbNext  = document.getElementById('lbNext');
+    const items = document.querySelectorAll('.gallery-item');
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbPrev = document.getElementById('lbPrev');
+    const lbNext = document.getElementById('lbNext');
     const lbClose = document.getElementById('lbClose');
     const lbCount = document.getElementById('lbCounter');
     const lbThumbs = document.getElementById('lbThumbs');
@@ -522,9 +557,9 @@
 
     document.addEventListener('keydown', e => {
       if (!lb.classList.contains('is-open')) return;
-      if (e.key === 'ArrowLeft')  goTo(current - 1);
+      if (e.key === 'ArrowLeft') goTo(current - 1);
       if (e.key === 'ArrowRight') goTo(current + 1);
-      if (e.key === 'Escape')     closeLightbox();
+      if (e.key === 'Escape') closeLightbox();
     });
 
     // Touch swipe support
@@ -535,6 +570,118 @@
       if (Math.abs(dx) > 40) dx < 0 ? goTo(current + 1) : goTo(current - 1);
     });
   </script>
+  <footer class="aswa-footer">
 
+    <!-- Top band -->
+    <div class="aswa-footer-top px-2">
+      <div class="container">
+        <div class="columns is-variable is-8">
+
+          <!-- Col 1: Brand -->
+          <div class="column is-4">
+            <div class="footer-brand">
+
+              <span class="footer-brand-name">Aswamedha</span>
+            </div>
+            <p class="footer-tagline">Ancient Healing, Modern Wellness</p>
+            <p class="footer-about-blurb">
+              A dedicated Ayurvedic hospital and herbal manufacturing company rooted in the authentic traditions of
+              Kerala, God's Own Country.
+            </p>
+            <!-- Social icons -->
+            <div class="footer-socials">
+              <a href="#" aria-label="Facebook" class="footer-social-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                </svg>
+              </a>
+              <a href="#" aria-label="Instagram" class="footer-social-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+              </a>
+              <a href="#" aria-label="WhatsApp" class="footer-social-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                  <path
+                    d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.057 23.428a.75.75 0 00.916.916l5.57-1.476A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.694-.504-5.23-1.385l-.376-.22-3.894 1.031 1.032-3.893-.22-.375A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+                </svg>
+              </a>
+              <a href="#" aria-label="YouTube" class="footer-social-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+
+
+          <!-- Col 4: Contact -->
+          <div class="column is-3">
+            <h4 class="footer-col-heading">Get In Touch</h4>
+            <ul class="footer-contact-list">
+              <li>
+                <svg class="fci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <span>TC 21/558, Gangothri,<br>Karamana, Trivandrum – 695002</span>
+              </li>
+              <li>
+                <svg class="fci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.14 2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.1a16 16 0 006 6l.63-.63a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 15.92z" />
+                </svg>
+                <a href="tel:+919995759566">+91 9995759566</a>
+              </li>
+              <li>
+                <svg class="fci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                <a href="mailto:drashwinsan@gmail.com">drashwinsan@gmail.com</a>
+              </li>
+              <li>
+                <svg class="fci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="2" y1="12" x2="22" y2="12" />
+                  <path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" />
+                </svg>
+                <a href="https://www.aswamedhamhealthcare.com" target="_blank"
+                  rel="noopener">aswamedhamhealthcare.com</a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="aswa-footer-bottom">
+      <div class="container">
+        <div class="footer-bottom-inner">
+          <span class="footer-copy">&copy; <span id="footerYear"></span> Aswamedha Healthcare. All rights
+            reserved.</span>
+          <span class="footer-bottom-links">
+            <a href="#">Disclaimer: Images used on this site are for representative purposes only.</a>
+
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </footer>
 </body>
+
 </html>

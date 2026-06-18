@@ -10,9 +10,48 @@
   --text-body: #3a4a3a;
   --text-muted: #6b7c6b;
   --white: #ffffff;
+  --cream: #f8f4e8;
+  --cream-dark: #f0ead4;
+  --green-deep: #2d4a2d;
+  --green-mid: #3d6b3d;
+  --green-light: #5a8a3a;
+  --green-muted: #7a9e6a;
+  --gold: #c8893a;
+  --gold-light: #d9a055;
+  --text-dark: #1a2e1a;
+  --text-body: #3a4a3a;
+  --text-muted: #6b7c6b;
+  --white: #ffffff;
+  --cream: #f8f4e8;
+  --cream-dark: #f0ead4;
+  --green-deep: #2d4a2d;
+  --green-mid: #3d6b3d;
+  --green-light: #5a8a3a;
+  --gold: #c8893a;
+  --gold-light: #d9a055;
+  --text-dark: #1a2e1a;
+  --text-body: #3a4a3a;
+  --text-muted: #6b7c6b;
+  --white: #ffffff;
+  --cream: #f8f4e8;
+  --cream-dark: #f0ead4;
+  --green-deep: #2d4a2d;
+  --green-mid: #3d6b3d;
+  --green-light: #5a8a3a;
+  --green-muted: #7a9e6a;
+  --gold: #c8893a;
+  --gold-light: #d9a055;
+  --text-dark: #1a2e1a;
+  --text-body: #3a4a3a;
+  --text-muted: #6b7c6b;
+  --white: #ffffff;
 }
 
 /* Header */
+#active-nav {
+  color: rgb(190, 141, 35);
+}
+
 
 .aswa-nav {
   background: var(--cream);
