@@ -262,3 +262,7 @@
     align-items: flex-start;
   }
 }
+
+.container .columns.is-variable.is-8 {
+  --columnGap: unset;
+}
